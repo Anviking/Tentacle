@@ -6,13 +6,5 @@
 //  Copyright © 2016 Matt Diephouse. All rights reserved.
 //
 
-import Argo
 import Foundation
-
-extension NSURL: Decodable {
-    public class func decode(json: JSON) -> Decoded<NSURL> {
-        return String.decode(json).flatMap { URLString in
-            return .fromOptional(self.init(string: URLString))
-        }
-    }
-}
+import Decodable

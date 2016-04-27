@@ -6,10 +6,8 @@
 //  Copyright © 2016 Matt Diephouse. All rights reserved.
 //
 
-import Argo
-import Curry
 import Foundation
-
+import Decodable
 
 /// A Release of a Repository.
 public struct Release: Hashable, CustomStringConvertible {
@@ -102,26 +100,27 @@ public func ==(lhs: Release, rhs: Release) -> Bool {
 }
 
 extension Release.Asset: ResourceType {
-    public static func decode(j: JSON) -> Decoded<Release.Asset> {
-        return curry(self.init)
-            <^> (j <| "id" >>- toString)
-            <*> j <| "name"
-            <*> j <| "content_type"
-            <*> j <| "browser_download_url"
-            <*> j <| "url"
+    public static func decode(json: AnyObject) throws -> Release.Asset {
+        return try Release.Asset(
+            ID: toString(json => "id"),
+            name: json => "name",
+            contentType: json => "content_type",
+            URL: json => "browser_download_url",
+            APIURL: json => "url"
+            )
     }
 }
 
 extension Release: ResourceType {
-    public static func decode(j: JSON) -> Decoded<Release> {
-        let f = curry(Release.init)
-        return f
-            <^> (j <| "id" >>- toString)
-            <*> j <| "tag_name"
-            <*> j <| "html_url"
-            <*> j <|? "name"
-            <*> j <| "draft"
-            <*> j <| "prerelease"
-            <*> j <|| "assets"
+    public static func decode(json: AnyObject) throws -> Release {
+        return try Release(
+            ID: toString(json => "id"),
+            tag: json => "tag_name",
+            URL: json => "html_url",
+            name: json =>? "name",
+            draft: json => "draft",
+            prerelease: json => "prerelease",
+            assets: json => "assets"
+            )
     }
 }

@@ -6,8 +6,7 @@
 //  Copyright © 2016 Matt Diephouse. All rights reserved.
 //
 
-import Argo
-import Curry
+import Decodable
 
 /// A User on GitHub.
 public struct User: Hashable, CustomStringConvertible {
@@ -38,6 +37,8 @@ public struct User: Hashable, CustomStringConvertible {
     /// The date that the user joined GitHub.
     public let joinedDate: NSDate
     
+    public let location: String?
+    
     public var hashValue: Int {
         return ID.hashValue
     }
@@ -46,7 +47,7 @@ public struct User: Hashable, CustomStringConvertible {
         return login
     }
     
-    public init(ID: String, login: String, URL: NSURL, avatarURL: NSURL, name: String?, email: String?, websiteURL: NSURL?, company: String?, joinedDate: NSDate) {
+    public init(ID: String, login: String, URL: NSURL, avatarURL: NSURL, name: String?, email: String?, websiteURL: NSURL?, company: String?, joinedDate: NSDate, location: String?) {
         self.ID = ID
         self.login = login
         self.URL = URL
@@ -56,6 +57,7 @@ public struct User: Hashable, CustomStringConvertible {
         self.websiteURL = websiteURL
         self.company = company
         self.joinedDate = joinedDate
+        self.location = location
     }
 }
 
@@ -72,17 +74,18 @@ public func ==(lhs: User, rhs: User) -> Bool {
 }
 
 extension User: ResourceType {
-    public static func decode(j: JSON) -> Decoded<User> {
-        let f = curry(self.init)
-        return f
-            <^> (j <| "id" >>- toString)
-            <*> j <| "login"
-            <*> j <| "html_url"
-            <*> j <| "avatar_url"
-            <*> j <|? "name"
-            <*> j <|? "email"
-            <*> j <|? "blog"
-            <*> j <|? "company"
-            <*> (j <| "created_at" >>- toNSDate)
+    public static func decode(json: AnyObject) throws -> User {
+        return try User(
+            ID: String(json => "id"),
+            login: json => "login",
+            URL: json => "url",
+            avatarURL: json => "avatar_url",
+            name: json =>? "name",
+            email: json =>? "email",
+            websiteURL: json =>? "blog",
+            company: json =>? "company",
+            joinedDate: json => "created_at",
+            location: json => "location"
+        )
     }
 }

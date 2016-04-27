@@ -2,10 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Carthage/Checkouts/Argo/Argo.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Carthage/Checkouts/Curry/Curry.xcodeproj">
+      location = "group:Carthage/Checkouts/Decodable/Decodable.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Carthage/Checkouts/OHHTTPStubs/OHHTTPStubs/OHHTTPStubs.xcodeproj">

@@ -23,6 +23,7 @@
 		619081891C8A2DB7001BE2F8 /* GitHubErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB0765E1C8A019A00ABD373 /* GitHubErrorTests.swift */; };
 		6190818A1C8A2DB7001BE2F8 /* ReleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F40A11C8909EB00E3B11A /* ReleaseTests.swift */; };
 		6190818B1C8A2DB7001BE2F8 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		8FFE0E601CD167DD0001350D /* Decodable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFE0E5F1CD167DD0001350D /* Decodable.framework */; };
 		BE0F40A01C89098E00E3B11A /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F409F1C89098E00E3B11A /* Fixture.swift */; };
 		BE0F40A21C8909EB00E3B11A /* ReleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F40A11C8909EB00E3B11A /* ReleaseTests.swift */; };
 		BE0F40A41C89135D00E3B11A /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0F40A31C89135D00E3B11A /* Decodable.swift */; };
@@ -121,6 +122,7 @@
 /* Begin PBXFileReference section */
 		61377C6C1C8A2B2C0081FF24 /* Tentacle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Tentacle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6190817D1C8A2D2B001BE2F8 /* Tentacle-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tentacle-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FFE0E5F1CD167DD0001350D /* Decodable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Decodable.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Tentacle-bvfpuotntimgzwckhgrpxdavdlni/Build/Products/Debug-iphoneos/Decodable.framework"; sourceTree = "<group>"; };
 		BE0F409F1C89098E00E3B11A /* Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fixture.swift; path = Tests/Fixture.swift; sourceTree = SOURCE_ROOT; };
 		BE0F40A11C8909EB00E3B11A /* ReleaseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseTests.swift; sourceTree = "<group>"; };
 		BE0F40A31C89135D00E3B11A /* Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FFE0E601CD167DD0001350D /* Decodable.framework in Frameworks */,
 				61377C741C8A2B440081FF24 /* Argo.framework in Frameworks */,
 				61377C751C8A2B440081FF24 /* Curry.framework in Frameworks */,
 				61377C761C8A2B440081FF24 /* ReactiveCocoa.framework in Frameworks */,
@@ -319,6 +322,7 @@
 		BE88E8271C88C7E90034A112 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8FFE0E5F1CD167DD0001350D /* Decodable.framework */,
 				BE2B6A691C8B84D60080BFEB /* OHHTTPStubs.framework */,
 				BE2B6A671C8B84CD0080BFEB /* OHHTTPStubs.framework */,
 				BE88E85B1C88ED750034A112 /* Argo.framework */,

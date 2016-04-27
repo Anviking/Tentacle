@@ -6,7 +6,7 @@
 //  Copyright © 2016 Matt Diephouse. All rights reserved.
 //
 
-import Argo
+import Decodable
 import Foundation
 import ReactiveCocoa
 import Result
@@ -106,7 +106,7 @@ public final class Client {
         case JSONDeserializationError(NSError)
         
         /// An error occurred while decoding JSON.
-        case JSONDecodingError(DecodeError)
+        case JSONDecodingError(DecodingError)
         
         /// A status code, response, and error that was returned from the API.
         case APIError(Int, Response, GitHubError)
@@ -122,8 +122,8 @@ public final class Client {
             case let .JSONDeserializationError(error):
                 return error.hashValue
                 
-            case let .JSONDecodingError(error):
-                return error.hashValue
+            case .JSONDecodingError:
+                return 34
                 
             case let .APIError(statusCode, response, error):
                 return statusCode.hashValue ^ response.hashValue ^ error.hashValue

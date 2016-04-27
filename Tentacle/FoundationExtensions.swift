@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Decodable
 
 extension NSDateFormatter {
     @nonobjc public static var ISO8601: NSDateFormatter = {
@@ -16,4 +17,15 @@ extension NSDateFormatter {
         formatter.timeZone = NSTimeZone(abbreviation:"UTC")
         return formatter
     }()
+}
+
+extension NSDate: Decodable {
+    public static func decode(json: AnyObject) throws -> NSDate {
+        let string = try String.decode(json)
+        guard let date = NSDateFormatter.ISO8601.dateFromString(string) else {
+            let metadata = DecodingError.Metadata(object: json)
+            throw DecodingError.RawRepresentableInitializationError(rawValue: string, metadata)
+        }
+        return date
+    }
 }

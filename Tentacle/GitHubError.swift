@@ -6,10 +6,8 @@
 //  Copyright © 2016 Matt Diephouse. All rights reserved.
 //
 
-import Argo
-import Curry
 import Foundation
-
+import Decodable
 
 /// An error from the GitHub API.
 public struct GitHubError: Hashable, CustomStringConvertible, ErrorType {
@@ -34,7 +32,7 @@ public func ==(lhs: GitHubError, rhs: GitHubError) -> Bool {
 }
 
 extension GitHubError: Decodable {
-    public static func decode(j: JSON) -> Decoded<GitHubError> {
-        return curry(self.init) <^> j <| "message"
+    public static func decode(json: AnyObject) throws -> GitHubError {
+        return try GitHubError(message: json => "message")
     }
 }

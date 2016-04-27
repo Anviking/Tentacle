@@ -6,39 +6,31 @@
 //  Copyright © 2016 Matt Diephouse. All rights reserved.
 //
 
-import Argo
+import Decodable
 import Foundation
 import Result
 
 
-internal func decode<T: Decodable where T == T.DecodedType>(object: AnyObject) -> Result<T, DecodeError> {
-    let decoded: Decoded<T> = decode(object)
-    switch decoded {
-    case let .Success(object):
-        return .Success(object)
-    case let .Failure(error):
+internal func decode<T: Decodable>(object: AnyObject) -> Result<T.DecodedType, DecodingError> {
+    do {
+        return try .Success(T.decode(object))
+    } catch let error as DecodingError {
         return .Failure(error)
+    } catch {
+        fatalError("\(error)")
     }
 }
 
-internal func decode<T: Decodable where T == T.DecodedType>(object: AnyObject) -> Result<[T], DecodeError> {
-    let decoded: Decoded<[T]> = decode(object)
-    switch decoded {
-    case let .Success(object):
-        return .Success(object)
-    case let .Failure(error):
+internal func decode<T: Decodable where T.DecodedType == T>(object: AnyObject) -> Result<[T], DecodingError> {
+    do {
+        return try .Success([T].decode(object))
+    } catch let error as DecodingError {
         return .Failure(error)
+    } catch {
+        fatalError("\(error)")
     }
 }
 
-internal func toString(number: Int) -> Decoded<String> {
-    return .Success(number.description)
-}
-
-internal func toNSDate(string: String) -> Decoded<NSDate> {
-    if let date = NSDateFormatter.ISO8601.dateFromString(string) {
-        return .Success(date)
-    } else {
-        return .Failure(.Custom("Date is not ISO8601 formatted"))
-    }
+internal func toString(number: Int) -> String {
+    return number.description
 }

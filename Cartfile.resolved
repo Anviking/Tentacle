@@ -1,5 +1,4 @@
-github "thoughtbot/Argo" "v3.0.0"
-github "thoughtbot/Curry" "v2.1.0"
+github "Anviking/Decodable" "bd1da97fa99731970fd05b4de360a83da7b8f99d"
 github "AliSoftware/OHHTTPStubs" "5.0.0"
 github "antitypical/Result" "2.0.0"
 github "ReactiveCocoa/ReactiveCocoa" "v4.1.0"

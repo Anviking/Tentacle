@@ -6,9 +6,9 @@
 //  Copyright © 2016 Matt Diephouse. All rights reserved.
 //
 
-import Argo
+import Decodable
 
 /// A Resource from the GitHub API.
 public protocol ResourceType: Decodable, Hashable {
-    static func decode(json: JSON) -> Decoded<Self>
+    
 }
